@@ -4,15 +4,6 @@ package com.kian.sandbox.romanNumerals;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 
-import java.util.Scanner;
-
-/**
- * Class Info
- *
- * @author: Kian Samii
- * @since: 1.0
- * Eventually a RESTful chess server
- */
 public class RomanNumeralConverter {
     public static final char[] NUMERALS = "IVXLCDM".toCharArray();
 
@@ -25,24 +16,14 @@ public class RomanNumeralConverter {
         }
     }
 
-    public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        RomanNumeralConverter converter = new RomanNumeralConverter();
-        while (scan.hasNextLine()) {
-            String line = scan.nextLine().trim();
-            String converted;
-            if (StringUtils.isNumeric(line)) {
-                converted = converter.convert(Integer.parseInt(line));
-            } else {
-                int deconvert = converter.deconvert(line);
-                if (deconvert < 0) {
-                    System.out.println("Could not deconvert, error in numeral");
-                }
-                converted = "" + converter.deconvert(line);
-            }
-            System.out.println(converted);
+    public String convert(String line) {
+        String convert;
+        if (StringUtils.isNumeric(line)) {
+            convert = this.convert(Integer.parseInt(line));
+        } else {
+            return String.valueOf(this.deconvert(line));
         }
-
+        return convert;
     }
 
     public String convert(int number) {
